@@ -19,4 +19,14 @@ public class TrackCoach implements Coach{
         // use my fortuneService to get a fortune
         return "Track coach says: "+fortuneService.getFortune();
     }
+
+    // adding a init method: custom code run after bean is created
+    public void doMyStartupStuff(){
+        System.out.println("TrackCoach: Inside doMyStartupStuff method");
+    }
+
+    // adding a destroy method: custom code run before bean is destroyed
+    public void doMyCleanupStuff(){
+        System.out.println("TrackCoach: Inside doMyCleanupStuff method");
+    }
 }

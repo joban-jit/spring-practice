@@ -7,33 +7,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    add entry to enable component scanning-->
+    <context:component-scan base-package="com.practicespring"/>
     <!--load the properties file: sport.properties-->
     <context:property-placeholder location="classpath:sport.properties"/>
-
-    <!-- bean definitions here -->
-
-    <!-- define the dependency-->
-    <bean id ="myFortune" class = "com.practicespring.HappyFortuneService"/>
-    <!--setup the constructor injection-->
-<!--    <bean id = "trackCoach" class="com.practicespring.TrackCoach">-->
-<!--        <constructor-arg ref="myFortune"/>-->
-<!--    </bean>-->
-<!--    <bean id = "baseballCoach" class="com.practicespring.BaseballCoach">-->
-<!--        <constructor-arg ref="myFortune"/>-->
-<!--    </bean>-->
-
-    <bean id = "cricketCoach" class="com.practicespring.CricketCoach">
-        <!--setup the setter injection-->
-        <property name="fortuneService" ref="myFortune"/>
-        <!-- inject literal value-->
-
-<!--        hard coded values-->
-<!--        <property name="email" value="abc@example.com"/>-->
-<!--        <property name="team" value="India"/>-->
-
-<!--        using properties file to get properties-->
-        <property name="email" value="${foo.email}"/>
-        <property name="team" value="${foo.team}"/>
-    </bean>
 
 </beans>

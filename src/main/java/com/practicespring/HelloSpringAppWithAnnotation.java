@@ -1,14 +1,15 @@
 package com.practicespring;
 
+import com.practicespring.model.Coach;
+import com.practicespring.model.CricketCoach;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class HelloSpringApp {
+public class HelloSpringAppWithAnnotation {
     public static void main(String[] args) {
         // load the spring config file
         ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("applicationContext.xml",
-                        "beanScope-applicationContext.xml",
-                        "beanLifecycle-applicationContext.xml");
+                new ClassPathXmlApplicationContext(
+                        "applicationContext.xml");
 
         // retrieve bean from spring container
         Coach trackCoach = context.getBean("trackCoach", Coach.class);
@@ -35,14 +36,12 @@ public class HelloSpringApp {
         System.out.println(cricketCoach2.getTeam());
         System.out.println(cricketCoach2.getEmail());
 
-
-        // bean scope
         // by default it is Singleton.
 
         // there are two statements where we are creating bean of "cricketCoach" with different instance
         // type but Spring will only create one singleton bean and on 2nd call it will return instance which is
         // already created
-        // as we can see below statment will return true
+        // as we can see below statement will return true
         System.out.println(cricketCoach==cricketCoach2); // true
 
 
@@ -55,6 +54,7 @@ public class HelloSpringApp {
         System.out.println(baseballCoach==antherBaseballCoach); //false
         System.out.println("Memory location for baseballCoach: "+baseballCoach); //com.practicespring.BaseballCoach@408d971b
         System.out.println("Memory location for anotherBaseballCoach: "+antherBaseballCoach);//com.practicespring.BaseballCoach@6c6cb480
+
 
 
         //close the context

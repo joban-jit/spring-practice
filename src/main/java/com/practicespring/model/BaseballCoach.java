@@ -1,12 +1,21 @@
-package com.practicespring;
+package com.practicespring.model;
 
+import com.practicespring.fortuneServices.FortuneService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class BaseballCoach implements Coach{
 
     // define a private field for the dependency
     private FortuneService fortuneService;
 
     // define a constructor for dependency injection
-    public BaseballCoach(FortuneService fortuneService) {
+    @Autowired
+    public BaseballCoach(@Qualifier("randomFortuneService") FortuneService fortuneService) {
         this.fortuneService = fortuneService;
     }
 

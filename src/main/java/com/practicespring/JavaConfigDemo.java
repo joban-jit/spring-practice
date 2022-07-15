@@ -1,15 +1,15 @@
 package com.practicespring;
 
+import com.practicespring.config.SportConfig;
 import com.practicespring.model.Coach;
 import com.practicespring.model.CricketCoach;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class HelloSpringAppWithAnnotation {
+public class JavaConfigDemo {
     public static void main(String[] args) {
         // load the spring config file
-        ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext(
-                        "applicationContext.xml");
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(SportConfig.class);
 
         // retrieve bean from spring container
         Coach trackCoach = context.getBean("trackCoach", Coach.class);
@@ -22,15 +22,24 @@ public class HelloSpringAppWithAnnotation {
         // of CricketCoach class not Coach
         CricketCoach cricketCoach2 = context.getBean("cricketCoach", CricketCoach.class);
 
+        // created below beans with @bean annotation in Sportconfig class
+//        Coach martialArtsCoach = context.getBean("martialArtsCoach", Coach.class); // martialArtsCoach is method name
+        // so if you don't define anything with @Bean this is the default name
+        Coach myMartialArtsCoach = context.getBean("myMartialArtsCoach", Coach.class);
+
         // call methods on the bean
         System.out.println(trackCoach.getDailyWorkout());
         System.out.println(baseballCoach.getDailyWorkout());
         System.out.println(cricketCoach.getDailyWorkout());
+//        System.out.println(martialArtsCoach.getDailyWorkout());
+        System.out.println(myMartialArtsCoach.getDailyWorkout());
 
         // call new methods which uses dependency
         System.out.println(trackCoach.getDailyFortune());
         System.out.println(baseballCoach.getDailyFortune());
         System.out.println(cricketCoach.getDailyFortune());
+//        System.out.println(martialArtsCoach.getDailyFortune());
+        System.out.println(myMartialArtsCoach.getDailyFortune());
 
         // call new methods to get the literal values
         System.out.println(cricketCoach2.getTeam());
